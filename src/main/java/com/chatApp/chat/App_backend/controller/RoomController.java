@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/chatApp")
+@CrossOrigin("http://localhost:8080")
 public class RoomController {
 
     @Autowired
     private RoomRepository roomRepository;
 
     // Create Room
-    @PostMapping("/chat")
-    public ResponseEntity<?> sendMessage(@RequestParam String roomId) {
+    @PostMapping("/createRoom")
+    public ResponseEntity<?> createRoom(@RequestParam String roomId) {
 
         if(roomRepository.findByRoomId(roomId)!=null){
             return ResponseEntity.badRequest().body("Room Already Exist");
